@@ -35,14 +35,18 @@ for i in range(len(y)):
     print(y[i])
     plt.subplot(3, 2, i+1)
     #plt.plot(x, y[i], label=legend_value[i], marker='X')
-    plt.barh(x, y[i], color='gray')
-    plt.title(legend_value[i])
+    bars = plt.barh(x, y[i], color='gray')
+    plt.title("Net generation in the year " + legend_value[i])
     plt.ylabel("G8 Countries")
     plt.xlabel("Net generation (billion kWh)")
-    #plt.legend(loc="upper left")
+    #plt.legend(loc="lower right")
     plt.xticks(rotation='horizontal')
-    #plt.yticks(np.arange(0, 5000, 1000))
+    plt.xticks(np.arange(0, 5500, 500))
     plt.grid(color='k', linestyle='--', linewidth=0.5)
+
+    for bar in bars:
+        xval = bar.get_width()
+        plt.text(xval + 0.05, bar.get_y() + bar.get_height() / 2, round(xval, 2), ha='left', va='center', fontsize=10)
 
 plt.tight_layout()
 plt.savefig("g8_net_generation", dpi=100, bbox_inches='tight')
