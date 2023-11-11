@@ -37,11 +37,17 @@ for i in range(len(y)):
     plt.subplot(3, 2, i+1)
     bars = plt.barh(x, y[i], color='gray', label=legend_value[i])
     plt.ylabel("G7 Countries")
-    plt.xlabel("Net electricity generation (billion kWh)")
     plt.legend(loc="lower right")
     plt.xticks(rotation='horizontal')
     plt.xticks(np.arange(0, 5500, 500))
     plt.grid(color='k', linestyle='--', linewidth=0.5)
+
+    if i > 3:
+        plt.xlabel("Net electricity generation (billion kWh)")
+
+    if i < 4:
+        ax = plt.gca()
+        ax.xaxis.set_tick_params(labelbottom=False)
 
     for bar in bars:
         xval = bar.get_width()
